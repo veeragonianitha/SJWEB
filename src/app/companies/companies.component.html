@@ -1,0 +1,66 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class = "panel panel-default">
+            <!-- <div class = "panel-heading">
+               Companies
+            </div> -->
+            <div class = "panel-body" *ngIf='comapniesshow'>
+               <table class="table table-striped table-dark table-hover">
+                  <thead>
+                     <tr><th>Ticker</th><th>Company Name</th></tr>
+                  </thead>
+                  <tbody>
+                     <tr *ngFor="let companie of companies" (click)='selectedticker(companie)'>
+                        <td>{{companie.ticker}}</td>
+                        <td>{{companie.name}}</td>
+                     </tr>
+                  </tbody>
+               </table>
+               <!-- <ul class='list-group'>
+                  <li class='list-group-item list-group-item-action list-group-item-info' *ngFor='let skilslist of skilslists' (click)='selectskil(skilslist.id)'>{{skilslist.description}}</li> 
+               </ul> -->
+            </div>
+            <div *ngIf='!comapniesshow'>
+               <span *ngIf = 'selectedcompanyinfo'>
+                  <b>{{selectedcompanyinfo.legal_name}}-<span class="label label-info"> {{selectedcompanyinfo.ticker}} 
+                     </span></b>
+                  <p>
+                     <span *ngIf='showshort'>{{selectedcompanyinfo.short_description}}    <a href="javascript:void(0)" (click)='longdescription()'>More...</a>
+                     </span>
+                     <span *ngIf='!showshort && selectedcompanyinfo'>{{selectedcompanyinfo.long_description}}</span></p>
+                  </span>
+                  <a href="javascript:void(0)" (click)="reloadCompanies()">Reload Compines</a><br>
+                  <button (click)='priceinfo(selectedcompanyinfo.ticker)' class="btn btn-info btn-sm">Price Information</button><br>
+				  <div class='container'>
+                     <table class="table table-striped table-dark table-hover" *ngIf='showprice'>
+                        <thead>
+                           <tr><th>date</th>
+                              <th>adj_close</th><th>adj_factor</th><th>adj_high</th><th>adj_low</th><th>adj_open</th><th>adj_volume</th><th>close</th><th>ex_dividend</th><th>high</th><th>low</th><th>open</th><th>split_ratio</th><th>volume</th>
+                           </tr>                           
+                        </thead>
+                        <tbody>
+                           <tr *ngFor='let price of prices'>
+                              <td>{{price.date | date:"dd/MM/yyyy"}}</td>
+                              <td>{{price.adj_close| number: '1.2-4'}}</td>
+<td>{{price.adj_factor| number: '1.2-4'}}</td>
+<td>{{price.adj_high| number: '1.2-4'}}</td>
+<td>{{price.adj_low| number: '1.2-4'}}</td>
+<td>{{price.adj_open| number: '1.2-4'}}</td>
+<td>{{price.adj_volume}}</td>
+<td>{{price.close}}</td>
+<td>{{price.ex_dividend}}</td>
+<td>{{price.high}}</td>
+<td>{{price.low}}</td>
+<td>{{price.open}}</td>
+<td>{{price.split_ratio}}</td>
+<td>{{price.volume}}</td>
+                           </tr>
+                        </tbody>
+                  </table>
+				  </div>
+               </div>
+               <div>
+            </div>
+         </div>
+    </div>
+</div>
